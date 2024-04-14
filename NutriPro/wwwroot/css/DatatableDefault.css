@@ -128,7 +128,7 @@ div.dt-processing {
 
 .dt-paging-button.disabled:hover,
 .dt-paging-button:hover {
-    background: #3d874e !important;
+    background: #f7b6b6 !important;
     border: none !important;
     color: white !important;
 }

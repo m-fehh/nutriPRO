@@ -55,6 +55,8 @@
         $unitsSelect.empty();
 
         units.forEach(function (unit) {
+            console.log(unit);
+
             var option = $("<option>", {
                 value: unit.id,
                 selected: unit.levelName === "Matriz"
@@ -78,12 +80,4 @@
 
         AjaxInsertDefault('#submitButton', url, formData);
     });
-
-    $('.toggle-password').click(function () {
-        var $input = $(this).closest('.input-group').find('input');
-        var type = $input.attr('type') === 'password' ? 'text' : 'password';
-        $input.attr('type', type);
-        $(this).find('i').toggleClass('fa-eye fa-eye-slash');
-    });
-
 });

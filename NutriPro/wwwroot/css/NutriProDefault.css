@@ -46,7 +46,7 @@ hr {
 
     .form-control:focus {
         border-color: #FF5757;
-        box-shadow: 0 0 0 0.2rem rgba(167, 225, 5, 0.25);
+        box-shadow: 0 0 0 0.2rem rgba(139, 0, 0, 0.25) !important;
     }
 
 .input-label.required {
@@ -115,7 +115,7 @@ hr {
 .select2-selection--multiple::after:focus,
 .select2-container--open:focus {
     border-color: #FF5757;
-    box-shadow: 0 0 0 0.2rem rgba(167, 225, 5, 0.25);
+    box-shadow: 0 0 0 0.2rem rgba(139, 0, 0, 0.25) !important;
 }
 
 .select2-selection--multiple,

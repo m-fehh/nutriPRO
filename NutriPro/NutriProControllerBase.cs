@@ -236,26 +236,31 @@ namespace NutriPro.Mvc
                     return NotFound();
                 }
 
-                //var originalId = entity.GetType().GetProperty("Id").GetValue(entity);
-
-                //_mapper.Map(model, entity);
-
-                //entity.GetType().GetProperty("Id").SetValue(entity, originalId);
-
                 // Comparar propriedades do model com a entity
                 foreach (var property in typeof(TDto).GetProperties())
                 {
                     if (property.Name != "Id")
                     {
                         var modelValue = property.GetValue(model);
-                        var entityValue = typeof(TEntity).GetProperty(property.Name)?.GetValue(entity);
+                        var entityProperty = typeof(TEntity).GetProperty(property.Name);
 
-                        if (modelValue != null && entityValue != null && !modelValue.Equals(entityValue))
+                        if (modelValue != null && entityProperty != null)
                         {
-                            typeof(TEntity).GetProperty(property.Name)?.SetValue(entity, modelValue);
+                            // Verifica se a propriedade é um enum
+                            if (entityProperty.PropertyType.IsEnum && modelValue is string)
+                            {
+                                var enumValue = Enum.Parse(entityProperty.PropertyType, (string)modelValue);
+                                entityProperty.SetValue(entity, enumValue);
+                            }
+                            else
+                            {
+                                // Se não for um enum, faz a atribuição direta
+                                entityProperty.SetValue(entity, modelValue);
+                            }
                         }
                     }
                 }
+
 
                 await _appService.UpdateAsync(entity);
 

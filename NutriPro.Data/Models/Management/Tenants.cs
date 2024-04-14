@@ -14,13 +14,13 @@ namespace NutriPro.Data.Models.Management
         public string Email { get; set; }
 
         [Required]
-        public ETenantType Type { get; set; }
+        public virtual ETenantType Type { get; set; }
 
         [Required]
         public string City { get; set; }
 
         [Required]
-        public string State { get; set; }
+        public virtual EStates State { get; set; }
         public virtual List<Units> Units { get; set; }
     }
 }

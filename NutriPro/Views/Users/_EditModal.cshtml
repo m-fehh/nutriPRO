@@ -69,6 +69,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
 <script>
+        $(document).ready(function () {
+        $("#SelectedUnits").select2();
+    });
+
     $('#UserEditModal').on('shown.bs.modal', function () {
         var unitsJson = '@Html.Raw(JsonConvert.SerializeObject(Model.Units, new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore }))';
         var units = JSON.parse(unitsJson);
@@ -96,8 +100,6 @@
                     });
                     $selectedUnits.append(option);
                 });
-
-                $selectedUnits.select2();
             }
         });
     });

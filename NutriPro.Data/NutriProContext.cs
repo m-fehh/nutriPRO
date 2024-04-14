@@ -37,6 +37,10 @@ namespace NutriPro.Data
                 .Property(u => u.Type)
                 .HasConversion<string>();
 
+            modelBuilder.Entity<Tenants>()
+                .Property(u => u.State)
+                .HasConversion<string>();
+
             modelBuilder.Entity<Units>()
                 .Property(u => u.Level)
                 .HasConversion<string>();

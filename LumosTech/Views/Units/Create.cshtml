@@ -1,0 +1,76 @@
+﻿@using NutriPro.Data.Enums;
+@using NutriPro.Mvc.Extensions;
+@model NutriPro.Application.Dtos.Management.UnitsDto
+
+@{
+    ViewData["Title"] = "Cadastro Unidade";
+}
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+
+<div class="row">
+    <div class="col-12">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="@Url.Action("Index", "Units")">Unidades</a>
+                </li>
+                <li class="breadcrumb-item active">
+                    <a href="@Url.Action("Create", "Units")">Adicionar</a>
+                </li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+@if (@ViewBag.TenantId == null)
+{
+    @Html.Partial("~/Views/Modals/_GetAllTenantsModals.cshtml")
+}
+
+<div class="container-fluid">
+    <form id="registerUnit">
+        <input type="hidden" id="sessionTenantId" name="TenantId" value="@ViewBag.TenantId" />
+
+        <p class="section-identification">Cadastro de Unidade</p>
+
+        <div class="row">
+            <div class="col-md-4">
+                @using (Html.MControlGroup(m => m.Name))
+                {
+                    @Html.MTextBoxFor(m => m.Name)
+                }
+            </div>
+
+            <div class="col-md-4">
+                @using (Html.MControlGroup(m => m.CpfCnpj))
+                {
+                    @Html.MTextBoxFor(m => m.CpfCnpj)
+                }
+            </div>
+
+            <div class="col-md-4">
+                @using (Html.MControlGroup(m => m.Level))
+                {
+                    @Html.MComboFor(m => m.Level, Html.GetEnumSelectList<ELevelOrganization>())
+                }
+            </div>
+        </div>
+        <hr />
+
+        <div class="row">
+            @Html.MSubmitButton("Finalizar Cadastro", "btn btn-success save", isFloatRight: true)
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-masker/1.2.0/vanilla-masker.min.js"></script>
+
+    <script src="~/js/Units/Create.js"></script>
+}

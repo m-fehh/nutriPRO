@@ -1,0 +1,240 @@
+﻿@using NutriPro.Mvc.Extensions;
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>@ViewData["Title"] - NutriPro 💡</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/css/flag-icon.min.css">
+
+<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/cs-skin-elastic.css" />
+<link rel="stylesheet" href="~/css/style.css">
+<link rel="stylesheet" href="~/css/NutriProDefault.css">
+<link rel="stylesheet" href="~/css/DatatableDefault.css">
+
+<!-- Left Panel -->
+<aside id="left-panel" class="left-panel">
+    <nav class="navbar navbar-expand-sm navbar-default">
+
+        <div id="main-menu" class="main-menu collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="@Url.Action("Index", "Home")"><i class="menu-icon fa fa-laptop"></i>Dashboard</a>
+                </li>
+                <li class="menu-title">Host</li>
+                <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Usuários">
+                        <i class="menu-icon fa fa-user"></i>Usuários
+                    </a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><i class="menu-icon fa fa-sort-alpha-asc"></i><a href="@Url.Action("Index", "Users")">Listar</a></li>
+                        <li><i class="menu-icon fa fa-plus"></i><a href="@Url.Action("Create", "Users")">Adicionar</a></li>
+                    </ul>
+                </li>
+
+                <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Unidades">
+                        <i class="menu-icon fa fa-briefcase"></i>Unidades
+                    </a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><i class="menu-icon fa fa-sort-alpha-asc"></i><a href="@Url.Action("Index", "Units")">Listar</a></li>
+                        <li><i class="menu-icon fa fa-plus"></i><a href="@Url.Action("Create", "Units")">Adicionar</a></li>
+                    </ul>
+                </li>
+
+                <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Tenants">
+                        <i class="menu-icon fa fa-id-card"></i>Tenants
+                    </a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><i class="menu-icon fa fa-sort-alpha-asc"></i><a href="@Url.Action("Index", "Tenants")">Listar</a></li>
+                        <li><i class="menu-icon fa fa-plus"></i><a href="@Url.Action("Create", "Tenants")">Adicionar</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</aside>
+
+<div id="right-panel" class="right-panel">
+    <header id="header" class="header">
+        <div class="top-left">
+            <div class="navbar-header" style="height: 53px;">
+                <a id="menuToggle" class="menutoggle" style="margin-left: -20px;"><i class="fa fa-bars"></i></a>
+                <a class="navbar-brand" href="./" style="padding-left: 25px; text-align: left; margin-top: -5px;"><img src="~/images/bg-layout-white.png" height="54" alt="Logo"></a>
+
+            </div>
+        </div>
+        <div class="top-right">
+            <div class="header-menu">
+                <div class="user-area dropdown float-right">
+                    <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span style="font-size: 0.8em;">
+                            @ViewBag.UserName
+                            <i style="padding:5px;" class="fa fa-angle-down"></i>
+                        </span>
+                    </a>
+
+                    <div class="user-menu dropdown-menu">
+                        <a class="nav-link" href="#"><i class="fa fa -cog"></i>Trocar Unidade</a>
+                        <a id="logoutBtn" class="nav-link" href="#"><i class="fa fa-power -off"></i>Logout</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+    <div class="content">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <div class="clearfix"></div>
+
+    <footer class="site-footer">
+        <div class="footer-inner bg-white">
+            <div class="row">
+                <div class="col-sm-6">
+                    Copyright &copy; 2024 NutriPro Technology.
+                </div>
+                <div class="col-sm-6 text-right">
+                    Designed by <a href="#">NutriPro Technology</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<!-- Loader -->
+@Html.Partial("~/Views/Shared/_LoaderDefault.cshtml")
+
+<!-- Toasts -->
+@Html.Partial("~/Views/Shared/_ToastDefault.cshtml")
+
+<!-- Scripts -->
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"></script>
+
+
+<script src="~/js/main.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+
+<!-- Other scripts -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+
+<script>
+    $(document).ready(function () {
+        var isMenuOpen = localStorage.getItem('isMenuOpen');
+
+        if (isMenuOpen === 'true') {
+            $('body').addClass('open');
+            $('#left-panel').addClass('open-menu');
+
+            $('.subtitle').show();
+        } else {
+            $('body').removeClass('open');
+            $('#left-panel').removeClass('open-menu');
+
+            $('.subtitle').hide();
+        }
+
+        $('#toastError').toast('hide');
+        $('#preloader').hide();
+
+        // Função para ativar o menu dropdown
+        $('.dropdown-toggle').dropdown();
+
+        var currentUrl = window.location.href;
+
+        $('.nav .active').removeClass('active');
+
+        function activateMenuItem(menuItem) {
+            menuItem.addClass('active');
+            menuItem.parentsUntil('.nav', '.menu-item-has-children').addClass('active');
+        }
+
+        $('.nav li').each(function () {
+            var menuItemUrl = $(this).find('a').attr('href');
+
+            if (currentUrl.indexOf(menuItemUrl) !== -1) {
+                activateMenuItem($(this));
+                return false;
+            }
+        });
+
+        if (!$('.nav .active').length) {
+            activateMenuItem($('.nav li:first-child'));
+        }
+
+
+        $('#logoutBtn').click(function (e) {
+            e.preventDefault();
+
+            $('#preloader').show();
+
+            $.ajax({
+                url: '/Auth/Logout',
+                type: 'POST',
+                success: function (data) {
+                    window.location.href = data.redirectTo;
+                },
+                error: function (error) {
+                    $('#toastError .toast-body').text("Ocorreu um erro ao processar a solicitação.");
+                    $('#toastError').toast('show');
+                },
+                complete: function () {
+                    // Esconde o loading
+                    $('#preloader').hide();
+                }
+            });
+        });
+    });
+
+    // Função para verificar e renovar o token periodicamente
+    function checkAndRenewToken() {
+        var token = sessionStorage.getItem('jwtToken');
+
+        if (!token) {
+            window.location.href = '/Auth/Login';
+            return;
+        }
+
+        var tokenPayload = JSON.parse(atob(token.split('.')[1]));
+        var tokenExpiration = new Date(tokenPayload.exp * 1000);
+
+        var now = new Date();
+        if (tokenExpiration - now < 300000) {
+            fetch('/Auth/RenewToken?tokenFixed=8ee6fc18-ff62-408d-b785-c8d73efbab00', {
+                method: 'POST'
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Erro ao renovar token');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    sessionStorage.setItem('jwtToken', data.token);
+                })
+                .catch(error => console.error('Erro ao renovar token:', error));
+        }
+    }
+
+    setInterval(checkAndRenewToken, 3600000);
+    checkAndRenewToken();
+</script>
+
+@await RenderSectionAsync("Scripts", required: false)

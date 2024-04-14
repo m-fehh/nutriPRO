@@ -1,0 +1,62 @@
+﻿@{
+    ViewData["Title"] = "Unidades";
+}
+
+<link href="https://cdn.datatables.net/2.0.3/css/dataTables.dataTables.min.css" rel="stylesheet" />
+
+<div class="row">
+    <div class="col-12">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item active">
+                    <a href="@Url.Action("Index", "Units")">Unidades</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="@Url.Action("Create", "Units")">Adicionar</a>
+                </li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<div class="animated fadeIn">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <table id="organizationTable" class="display" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Nome da Organização</th>
+                                <th>Nível Organizacional</th>
+                                <th>CPF/CNPJ</th>
+                                <th>Inquilino</th>
+                                <th>Condição</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    <script src="https://cdn.datatables.net/2.0.3/js/dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-masker/1.2.0/vanilla-masker.min.js"></script>
+
+    <script src="~/js/Units/Index.js"></script>
+}
+
+<div class="modal fade" id="UnitEditModal" tabindex="-1" role="dialog" aria-labelledby="UnitEditModalLabel" data-backdrop="static">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+        </div>
+    </div>
+</div>
+
+@Html.Partial("~/Views/Modals/_DeleteConfirmationModal.cshtml")

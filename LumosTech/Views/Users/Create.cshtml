@@ -1,0 +1,97 @@
+﻿@using NutriPro.Application.Enums;
+@using System.Reflection;
+@using System.ComponentModel.DataAnnotations;
+@using Newtonsoft.Json;
+@using NutriPro.Mvc.Extensions;
+@model NutriPro.Application.Dtos.Management.UsersDto;
+
+@{
+    ViewData["Title"] = "Criar Usuário";
+}
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+
+<div class="row">
+    <div class="col-12">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="@Url.Action("Index", "Users")">Usuários</a>
+                </li>
+                <li class="breadcrumb-item active">
+                    <a href="@Url.Action("Create", "Users")">Adicionar</a>
+                </li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+@if (@ViewBag.TenantId == null)
+{
+    @Html.Partial("~/Views/Modals/_GetAllTenantsModals.cshtml")
+}
+
+<div class="container-fluid">
+    <form id="registerUser">
+        <input type="hidden" id="sessionTenantId" name="TenantId" value="@ViewBag.TenantId" />
+
+        <p class="section-identification">Cadastro de Usuário</p>
+
+        <div class="row">
+            <div class="form-group col-md-6">
+                @using (Html.MControlGroup(m => m.Email))
+                {
+                    @Html.MTextBoxFor(m => m.Email)
+                }
+            </div>
+
+            <div class="form-group col-md-6">
+                @using (Html.MControlGroup(m => m.FullName))
+                {
+                    @Html.MTextBoxFor(m => m.FullName)
+                }
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-6">
+                @using (Html.MControlGroup(m => m.Password))
+                {
+                    @Html.MTextBoxFor(m => m.Password)
+                }
+            </div>
+
+            <div class="form-group col-md-6">
+                @using (Html.MControlGroup(m => m.Cpf))
+                {
+                    @Html.MTextBoxFor(m => m.Cpf)
+                }
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-12">
+                <label for="SelectedUnits" class="input-label">Selecionar Unidades<span class="input-label-required"></span></label>
+                <select id="SelectedUnits" class="form-control" multiple required></select>
+            </div>
+        </div>
+
+
+        <hr />
+
+        <div class="row">
+            @Html.MSubmitButton("Finalizar Cadastro", "btn btn-success save", isFloatRight: true)
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-masker/1.2.0/vanilla-masker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <script src="~/js/Users/Create.js"></script>
+}

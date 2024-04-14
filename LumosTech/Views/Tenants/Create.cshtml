@@ -1,0 +1,108 @@
+﻿@using NutriPro.Data.Enums;
+@using NutriPro.Mvc.Extensions;
+@model NutriPro.Application.Dtos.Management.Tenants.CreateTenantDto
+@{
+    ViewData["Title"] = "Criar Tenant";
+}
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+
+<div class="row">
+    <div class="col-12">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="@Url.Action("Index", "Tenants")">Tenants</a>
+                </li>
+                <li class="breadcrumb-item active">
+                    <a href="@Url.Action("Create", "Tenants")">Adicionar</a>
+                </li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <form id="registerTenant">
+        <p class="section-identification">Cadastro de Inquilino</p>
+
+        <div class="row">
+            <div class="form-group col-md-5">
+                @using (Html.MControlGroup(m => m.Tenant.Name))
+                {
+                    @Html.MTextBoxFor(m => m.Tenant.Name)
+                }
+            </div>
+
+            <div class="form-group col-md-5">
+                @using (Html.MControlGroup(m => m.Tenant.Email))
+                {
+                    @Html.MTextBoxFor(m => m.Tenant.Email)
+                }
+            </div>
+
+            <div class="form-group col-md-2">
+                @using (Html.MControlGroup(m => m.Tenant.Type))
+                {
+                    @Html.MComboFor(m => m.Tenant.Type, Html.GetEnumSelectList<ETenantType>())
+                }
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-8">
+                @using (Html.MControlGroup(m => m.Tenant.City))
+                {
+                    @Html.MTextBoxFor(m => m.Tenant.City)
+                }
+            </div>
+
+            <div class="form-group col-md-4">
+                @using (Html.MControlGroup(m => m.Tenant.State))
+                {
+                    @Html.MComboFor(m => m.Tenant.State, Html.GetEnumSelectList<EStates>())
+                }
+            </div>
+        </div>
+
+        <p class="section-identification">Cadastro de Unidade Matriz</p>
+
+        <div class="row">
+            <div class="form-group col-md-4">
+                @using (Html.MControlGroup(m => m.Unit.Name))
+                {
+                    @Html.MTextBoxFor(m => m.Unit.Name)
+                }
+            </div>
+
+            <div class="form-group col-md-4">
+                @using (Html.MControlGroup(m => m.Unit.Level))
+                {
+                    @Html.MComboFor(m => m.Unit.Level, Html.GetEnumSelectList<ELevelOrganization>())
+                }
+            </div>
+
+            <div class="form-group col-md-4">
+                @using (Html.MControlGroup(m => m.Unit.CpfCnpj))
+                {
+                    @Html.MTextBoxFor(m => m.Unit.CpfCnpj)
+                }
+            </div>
+        </div>
+
+        <hr />
+        <div class="row">
+            @Html.MSubmitButton("Finalizar Cadastro", "btn btn-success save", isFloatRight: true)
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-masker/1.2.0/vanilla-masker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <script src="~/js/Tenants/Create.js"></script>
+}

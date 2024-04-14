@@ -1,0 +1,53 @@
+﻿@{
+    Layout = null;
+}
+
+<style>
+    .toast {
+        position: fixed;
+        bottom: 20px;
+        z-index: 1000;
+        right: 20px;
+        min-width: 350px;
+    }
+
+    .toast-body {
+        background-color: #f1f1f1;
+    }
+
+    #toastError {
+        border-left: 2px solid red;
+    }
+
+    #toastInfo {
+        border-left: 2px solid yellow;
+    }
+
+    #toastSuccess {
+        border-left: 2px solid #FF5757;
+    }
+</style>
+
+<div class="toast" id="toastError" data-autohide="true" data-delay="5000">
+    <div class="toast-header">
+        <strong class="mr-auto">Erro</strong>
+        <small class="text-muted">Agora mesmo</small>
+    </div>
+    <div class="toast-body"></div>
+</div>
+
+<div class="toast" id="toastInfo" data-autohide="true" data-delay="5000">
+    <div class="toast-header">
+        <strong class="mr-auto text-info">Informação</strong>
+        <small class="text-muted">Agora mesmo</small>
+    </div>
+    <div class="toast-body"></div>
+</div>
+
+<div class="toast" id="toastSuccess" data-autohide="true" data-delay="5000">
+    <div class="toast-header">
+        <strong class="mr-auto text-success">Sucesso</strong>
+        <small class="text-muted">Agora mesmo</small>
+    </div>
+    <div class="toast-body"></div>
+</div>

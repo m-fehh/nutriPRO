@@ -1,0 +1,75 @@
+﻿@using NutriPro.Data.Enums;
+@using NutriPro.Mvc.Extensions;
+
+@{
+    Layout = null;
+}
+
+@model NutriPro.Application.Dtos.Management.Tenants.TenantsDto
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <p style="font-size: 1.1em!important;margin: 0; font-weight: bold;">Editar Inquilino</p>
+</div>
+
+<div class="modal-body">
+    <form id="editTenant" style="margin: auto!important">
+        <input type="hidden" name="Id" id="Id" value="@Model.Id" />
+
+        <div class="row">
+            <div class="form-group col-md-6">
+                @using (Html.MControlGroup(m => m.Name))
+                {
+                    @Html.MTextBoxFor(m => m.Name)
+                }
+            </div>
+
+            <div class="form-group col-md-6">
+                @using (Html.MControlGroup(m => m.Email))
+                {
+                    @Html.MTextBoxFor(m => m.Email)
+                }
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="form-group col-md-9">
+                @using (Html.MControlGroup(m => m.City))
+                {
+                    @Html.MTextBoxFor(m => m.City)
+                }
+            </div>
+            <div class="form-group col-md-3">
+                @using (Html.MControlGroup(m => m.State))
+                {
+                    @Html.MComboFor(m => m.State, Html.GetEnumSelectList<EStates>())
+                }
+            </div>
+        </div>
+
+        <div class="row">
+            @Html.MSubmitButton("Finalizar Cadastro", "btn btn-success save", isFloatRight: true)
+        </div>
+    </form>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
+<script>
+    $('#State').select2({
+        placeholder: 'Selecione o Estado',
+        allowClear: true
+    });
+
+    $("#editTenant").on('submit', function (e) {
+        e.preventDefault();
+
+        var id = $('#Id').val();
+        var formData = new FormData($('#editTenant')[0]);
+        var url = `/Tenants/Update/${id}`;
+
+        AjaxUpdateDefault("#submitButton", url, formData, "#TenantEditModal");
+    })
+</script>

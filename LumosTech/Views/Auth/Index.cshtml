@@ -1,0 +1,116 @@
+﻿@{
+    Layout = null;
+}
+
+@model NutriPro.Mvc.Models.LoginVM
+@using NutriPro.Mvc.Extensions;
+
+<link rel="stylesheet" href="~/css/Auth/login.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+@Html.Partial("~/Views/Shared/_ToastDefault.cshtml")
+@Html.Partial("~/Views/Shared/_LoaderDefault.cshtml")
+
+<div class="container" id="container">
+    <div class="form-container sign-in-container">
+
+        <form id="loginForm">
+            <img src="~/images/bg-layout-white.png" alt="Logo">
+
+            @using (Html.MControlGroup(m => m.Login))
+            {
+                @Html.MTextBoxFor(m => m.Login)
+            }
+
+            @using (Html.MControlGroup(m => m.Password))
+            {
+                @Html.MPasswordFor(m => m.Password)
+            }
+
+            @Html.MSubmitButton("Entrar", "btn btn-success login", isFloatRight: false)
+
+
+
+            @*             <label for="Login" class="input-label">Login<span class="input-label-required"></span></label>
+            <input type="text" class="form-control" name="Login" id="Login" placeholder="" autocomplete="off">
+
+            <label for="Password" class="input-label">Senha<span class="input-label-required"></span></label>
+            <div class="input-group">
+            <input type="password" class="form-control" name="Password" id="Password" placeholder="" autocomplete="off">
+            </div>
+
+            <button class="btn btn-success login float-right" type="submit">Entrar</button>
+            *@
+        </form>
+    </div>
+    <div class="overlay-container">
+        <div class="overlay">
+            <div class="overlay-panel overlay-right">
+                <h1>Bem-vindo à NutriPro</h1>
+                <p>
+                    Na NutriPro, unimos tecnologia de ponta e conhecimento em nutrição para oferecer a você uma experiência única de alta performance. Nossa missão é ser seu parceiro na jornada rumo ao sucesso esportivo, proporcionando soluções personalizadas e eficazes.
+                    <br />
+                    <br />
+                    Com a NutriPro, você tem acesso a análises nutricionais avançadas, planos alimentares customizados e acompanhamento especializado, tudo isso com o objetivo de maximizar seus resultados e impulsionar sua performance esportiva.
+                    <br />
+                    <br />
+                    Nossa equipe está comprometida com a excelência e a inovação, garantindo que cada etapa do seu processo seja otimizada para alcançar seus objetivos com eficiência e segurança. Junte-se a nós e descubra como podemos transformar suas metas em conquistas extraordinárias.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#preloader').hide();
+
+        $('#loginForm').on('submit', function (e) {
+            e.preventDefault();
+            var formData = new FormData($('#loginForm')[0]);
+
+            var submitButton = $('#submitButton');
+
+            // Desativa o botão
+            submitButton.prop('disabled', true);
+
+            // Mostra o loading
+            $('#preloader').show();
+
+
+            $.ajax({
+                url: '/Auth/Login',
+                method: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                    sessionStorage.setItem('jwtToken', data.token);
+                    window.location.href = data.redirectTo;
+                },
+                error: function (xhr, status, error) {
+                    var errorMessage = "Ocorreu um erro ao processar a solicitação.";
+
+                    if (xhr.status === 400 && xhr.responseJSON && xhr.responseJSON.errorMessage) {
+                        errorMessage = xhr.responseJSON.errorMessage;
+                    }
+
+                    $('#toastError .toast-body').text(errorMessage);
+                    $('#toastError').toast('show');
+                },
+                complete: function () {
+                    // Reativa o botão após o término da requisição
+                    submitButton.prop('disabled', false);
+
+                    // Esconde o loading
+                    $('#preloader').hide();
+                }
+            });
+        });
+    });
+</script>

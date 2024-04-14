@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Lumos.Data\NutriPro.Data.csproj" />
+    <ProjectReference Include="..\NutriPro.Data\NutriPro.Data.csproj" />
   </ItemGroup>
 
 </Project>

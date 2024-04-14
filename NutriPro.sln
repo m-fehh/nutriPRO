@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34221.43
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NutriPro.Mvc", "LumosTech\NutriPro.Mvc.csproj", "{383F9D96-839D-441B-90BB-8B941FF918C8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NutriPro.Mvc", "NutriPro\NutriPro.Mvc.csproj", "{383F9D96-839D-441B-90BB-8B941FF918C8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NutriPro.Data", "Lumos.Data\NutriPro.Data.csproj", "{85CFE1AE-8CAB-49B9-BA1D-912E7D6FFC63}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NutriPro.Data", "NutriPro.Data\NutriPro.Data.csproj", "{85CFE1AE-8CAB-49B9-BA1D-912E7D6FFC63}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NutriPro.Application", "Lumos.Application\NutriPro.Application.csproj", "{72A1CB3E-0394-4542-A262-948EE198BFBB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NutriPro.Application", "NutriPro.Application\NutriPro.Application.csproj", "{72A1CB3E-0394-4542-A262-948EE198BFBB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
